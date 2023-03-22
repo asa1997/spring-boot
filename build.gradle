@@ -1,6 +1,8 @@
 plugins {
 	id "org.jetbrains.kotlin.jvm" apply false // https://youtrack.jetbrains.com/issue/KT-30276
 	id "io.spring.nohttp" version "0.0.3.RELEASE"
+  	id "org.sonarqube" version "3.5.0.2730"
+
 }
 
 description = "Spring Boot Build"
@@ -10,6 +12,14 @@ defaultTasks 'build'
 nohttp {
 	whitelistFile = project.file("src/nohttp/whitelist.lines")
 	source.exclude "buildSrc/build/**"
+}
+
+sonarqube {
+  properties {
+    property "sonar.projectKey", "asa1997_spring-boot2"
+    property "sonar.organization", "asa1997"
+    property "sonar.host.url", "https://sonarcloud.io"
+  }
 }
 
 allprojects {
